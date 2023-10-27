@@ -27,6 +27,8 @@ public class LoginCourierTest {
     }
 
     @Test
+    @DisplayName("Courier can login with valid credentials")
+    @Description("Логин с валидными данными")
     public void courierCanLoginWithValidCredentials() {
         Courier courier = CourierGenerator.random();
         courierClient.createCourier(courier);

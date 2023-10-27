@@ -20,6 +20,8 @@ public class GetOrderListTest {
     }
 
     @Test
+    @DisplayName("Get list order")
+    @Description("Проверяет, что в теле ответа возвращается непустой список и код 200")
     public void getListOrder() {
         ValidatableResponse listOrderResponse = orderClient.getlOrderList();
         int statusCode = listOrderResponse.extract().statusCode();
@@ -27,6 +29,5 @@ public class GetOrderListTest {
 
         assertThat(statusCode, equalTo(HttpURLConnection.HTTP_OK));
         assertNotEquals(0, orders.size());
-
     }
 }

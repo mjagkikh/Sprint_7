@@ -11,15 +11,14 @@ public class CourierCreationTest {
     private final CourierAssertions check = new CourierAssertions();
     protected int courierId;
 
-
     @After
     public void deleteCourier() {
         ValidatableResponse delete = client.delete(courierId);
         check.deletedSuccessfully(delete);
     }
 
-
     @Test
+    @DisplayName("Courier creation with login then")
     public void courierCreationPositiveTest() {
         Courier courier = CourierGenerator.random();
         ValidatableResponse response = client.createCourier(courier);
@@ -33,6 +32,7 @@ public class CourierCreationTest {
     }
 
     @Test
+    @DisplayName("Courier creation with the same credentials")
     public void courierCreationWithSameCredentials() {
         Courier courier = CourierGenerator.random();
         ValidatableResponse response = client.createCourier(courier);

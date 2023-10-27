@@ -22,6 +22,8 @@ public class LoginCourierNegativeTest {
     }
 
     @Test
+    @DisplayName("Courier can't login without field login in body")
+    @Description("Без поля логина")
     public void courierCantLoginWithoutLoginInBody400() {
         String password = RandomStringUtils.randomAlphanumeric(10);
         Credentials creds = new Credentials(password);
@@ -36,6 +38,8 @@ public class LoginCourierNegativeTest {
     }
 
     @Test
+    @DisplayName("Courier can't login with null login")
+    @Description("Передаём в боди login:null")
     public void courierCantLoginWithNullLogin400() {
         Courier courier = CourierGenerator.random();
         ValidatableResponse loginResponse = courierClient.login(new Credentials(null, courier.getPassword()));
@@ -47,6 +51,8 @@ public class LoginCourierNegativeTest {
     }
 
     @Test
+    @DisplayName("Courier can't login with incorrect login")
+    @Description("Система вернёт ошибку, если неправильно указать логин")
     public void courierCantLoginWithIncorrectLogin404() {
         Courier courier = CourierGenerator.random();
         courierClient.createCourier(courier);
@@ -65,6 +71,8 @@ public class LoginCourierNegativeTest {
     }
 
     @Test
+    @DisplayName("Courier can't login with incorrect password")
+    @Description("Система вернёт ошибку, если неправильно указать пароль")
     public  void courierCantLoginWithIncorrectPassword404() {
         Courier courier = CourierGenerator.random();
         courierClient.createCourier(courier);
@@ -83,6 +91,8 @@ public class LoginCourierNegativeTest {
     }
 
     @Test
+    @DisplayName("Courier can't login without created data")
+    @Description("Если авторизоваться под несуществующим пользователем, запрос возвращает ошибку")
     public void courierCantLoginWithoutCreatedData404() {
         ValidatableResponse loginResponse = courierClient.login(new Credentials("loginWithoutCreation", "sOmepssw"));
         int statusCode = loginResponse.extract().statusCode();

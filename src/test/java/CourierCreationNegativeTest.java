@@ -20,6 +20,8 @@ public class CourierCreationNegativeTest {
     }
 
     @Test
+    @DisplayName("Courier creation with null login")
+    @Description("Если одного из полей нет, запрос возвращает ошибку")
     public void courierCreationWithNullLogin() {
         String password = RandomStringUtils.randomAlphanumeric(10);
         ValidatableResponse createResponse = courierClient.createCourier(new Courier(null, password, null));
@@ -33,6 +35,8 @@ public class CourierCreationNegativeTest {
     }
 
     @Test
+    @DisplayName("Courier creation with null password")
+    @Description("Если одного из полей нет, запрос возвращает ошибку")
     public void courierCreationWithNullPassword() {
         String login = RandomStringUtils.randomAlphanumeric(10);
         ValidatableResponse createResponse = courierClient.createCourier(new Courier(login, null, null));
@@ -45,6 +49,9 @@ public class CourierCreationNegativeTest {
     }
 
     @Test
+
+    @DisplayName("Courier creation with null fields")
+    @Description("Если ни одного из полей нет, запрос возвращает ошибку")
     public void courierCreationWithAllNullFields() {
         ValidatableResponse courierResponse = courierClient.createCourier(new Courier(null, null, null));
 

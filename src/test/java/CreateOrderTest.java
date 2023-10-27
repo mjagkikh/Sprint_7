@@ -20,7 +20,6 @@ public class CreateOrderTest {
     private OrderClient orderClient;
     private int track;
 
-
     public CreateOrderTest(List<String> color, int expectedCode) {
         this.color = color;
         this.expectedCode = expectedCode;
@@ -37,6 +36,8 @@ public class CreateOrderTest {
     }
 
     @Test
+    @DisplayName("Create order with valid data")
+    @Description("Параметризованные тесты с комбинациями цветов")
     public void createOrderWithValidData() {
         Order order = new Order(color);
         ValidatableResponse orderCreationResponse = orderClient.createOrder(order);
